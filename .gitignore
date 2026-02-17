@@ -1,0 +1,14 @@
+# Power Apps unpack artifacts / noise
+src/Entropy/
+src/**/AppCheckerResult.sarif
+src/**/checksum.json
+
+# Optional: keep repo smaller if you don't want images tracked
+# src/Assets/Images/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (just in case)
+*.env
