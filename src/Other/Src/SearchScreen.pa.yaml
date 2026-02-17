@@ -1,0 +1,278 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  SearchScreen:
+    Properties:
+      Fill: =RGBA(245, 245, 245, 1)
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+    Children:
+      - Rectangle1:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(204, 0, 0, 0.92)
+            Height: =129
+            Width: =640
+      - Label2:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.Arial
+            FontWeight: =FontWeight.Semibold
+            Size: =26
+            Text: ="RTCZ Device Search"
+            Width: =416
+            X: =222
+            Y: =29
+      - Image1:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =101
+            Image: ='RTCZ-removebg-preview'
+            Width: =184
+            X: =13
+            Y: =13
+      - Gallery1:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(237, 237, 237, 1)
+            Height: =684
+            Items: |+
+              =If(
+                 !IsBlank(varSearchTerm),
+                 Filter(
+                    DeviceDataList,
+                    StartsWith('Phone Number', varSearchTerm) ||
+                    StartsWith('Serial Number', varSearchTerm)
+                 ),
+                 Filter(DeviceDataList, false)
+              )
+            OnSelect: |-
+              =Navigate(DetailsPage, ScreenTransition.None, {selectedRecord: ThisItem})
+            TemplateFill: =
+            Visible: =varShowResults
+            Width: =596
+            X: =23
+            Y: =276
+          Children:
+            - Image2:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =72
+                  Image: |-
+                    =Switch(
+                        ThisItem.'Device Name',
+                        "Galaxy A02", SamsungA02,
+                        "Galaxy A03", SamsungA03,
+                        "Galaxy A04", SamsungA04,
+                        "A03 Core", SamsungA03Core,
+                        "A04 Core", SamsungA04Core,
+                        "Galaxy A05", SamsungA05A,
+                        "Galaxy 06", SamsungA06,
+                        "Galaxy A15", SamsungA15,
+                        "Galaxy A12", SamsungA12,
+                        "Galaxy 23+", SamsungS23Plus, 
+                       Blank()
+                    )
+                  OnSelect: =Select(Parent)
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                  Width: =72
+                  X: =16
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - Title1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =14
+                  Text: =ThisItem.'Phone Number'
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.TemplateWidth - 173
+                  X: =103
+                  Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+            - Subtitle1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =12
+                  Text: =ThisItem.'Device Name'
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Title1.Width
+                  X: =Title1.X
+                  Y: =Title1.Y + Title1.Height
+            - NextArrow1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  AccessibleLabel: =Self.Tooltip
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(166, 166, 166, 1)
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  DisabledColor: =RGBA(119, 119, 119, 1)
+                  Height: =50
+                  Icon: =Icon.ChevronRight
+                  OnSelect: |-
+                    =Navigate(DetailsPage, ScreenTransition.None, {selectedRecord: ThisItem})
+                  PaddingBottom: =16
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =16
+                  Tooltip: ="View item details"
+                  Width: =50
+                  X: =Parent.TemplateWidth - Self.Width - 12
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - Separator1:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(224, 224, 224, 1)
+                  Height: =8
+                  OnSelect: =Select(Parent)
+                  Width: =Parent.TemplateWidth
+                  Y: =Parent.TemplateHeight - Self.Height
+            - Rectangle2:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(0, 18, 107, 1)
+                  Height: =Parent.TemplateHeight - Separator1.Height
+                  OnSelect: =Select(Parent)
+                  Visible: =ThisItem.IsSelected
+                  Width: =4
+      - Button1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =1
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: |-
+              =If(
+                  IsBlank(Trim(TextSearchBox1.Text)),
+                  DisplayMode.Disabled,
+                  DisplayMode.Edit
+              )
+            Fill: =RGBA(204, 0, 0, 0.87)
+            Font: =Font.'Open Sans'
+            Height: =76
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(204, 0, 0, 1), -20%)
+            OnSelect: |-
+              =Set(varSearchTerm, Trim(TextSearchBox1.Text));
+              Set(varShowResults, true);
+
+              Patch(
+                 SearchLogs_Excel,
+                 Defaults(SearchLogs_Excel),
+                 {
+                    'Search Term': varSearchTerm,
+                    'Search Time Stamp': Now(),
+                    'User Email': User().Email
+                 }
+              );
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            Text: ="Search"
+            Width: =156
+            X: =460
+            Y: =170
+      - Label1:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Fill: =RGBA(245, 245, 245, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =95
+            Text: |+
+              =If(
+                  varShowResults && IsEmpty(Gallery1.AllItems),
+                  "No matching devices found. Try again.",
+                  ""
+              )
+            Width: =593
+            X: =23
+            Y: =978
+      - TextSearchBox1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(128, 128, 128, 1)
+            BorderThickness: =0.4
+            Default: =""
+            DelayOutput: =true
+            DisabledBorderColor: =RGBA(102, 102, 102, 1)
+            Font: =Font.'Segoe UI'
+            Height: =82
+            HintText: ="Search by Phone or Serial Number"
+            HoverBorderColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |
+              =Set(varSearchTerm, Trim(TextSearchBox1.Text));
+              Set(varShowResults, true);
+
+              Patch(
+                 SearchLogs_Excel,
+                 Defaults(SearchLogs_Excel),
+                 {
+                    'Search Term': varSearchTerm,
+                    'Search Time Stamp': Now(),
+                    'User Email': User().Email
+                 }
+              )
+            PaddingLeft: =70
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Size: =16
+            Width: =413
+            X: =23
+            Y: =170
+      - SearchIcon1:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(191, 190, 190, 1)
+            Height: =82
+            Icon: =Icon.Search
+            PaddingBottom: =14
+            PaddingLeft: =14
+            PaddingRight: =14
+            PaddingTop: =14
+            Tooltip: ="Search"
+            Width: =77
+            X: =23
+            Y: =170

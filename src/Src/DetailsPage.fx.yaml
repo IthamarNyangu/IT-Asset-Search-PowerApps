@@ -1,0 +1,390 @@
+DetailsPage As screen:
+    Fill: =RGBA(245, 245, 245, 1)
+
+    FormViewer1 As formViewer:
+        DataSource: =DeviceDataList
+        Height: =299
+        Item: =selectedRecord
+        Width: =572
+        X: =44
+        Y: =383
+        ZIndex: =1
+
+        "'Device Name_DataCard2' As typedDataCard.textualViewCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Device_x0020_Name"
+            Default: =ThisItem.'Device Name'
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@DeviceDataList],DataSourceInfo.DisplayName,'Device_x0020_Name')
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =54
+            Required: =false
+            Width: =572
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey10 As label:
+                Font: =Font.'Segoe UI'
+                Height: =71
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =190
+                Wrap: =false
+                X: =35
+                Y: =2
+                ZIndex: =1
+
+            DataCardValue10 As label:
+                DisplayMode: =Parent.DisplayMode
+                Font: =Font.'Segoe UI'
+                Height: =73
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =ThisItem.'Device Name'
+                Width: =229
+                X: =326
+                ZIndex: =2
+
+        "'Serial Number_DataCard1' As typedDataCard.textualViewCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Serial_x0020_Number"
+            Default: =ThisItem.'Serial Number'
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@DeviceDataList],DataSourceInfo.DisplayName,'Serial_x0020_Number')
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =73
+            Required: =false
+            Width: =572
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey6 As label:
+                Font: =Font.'Segoe UI'
+                Height: =71
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =227
+                Wrap: =false
+                X: =35
+                Y: =2
+                ZIndex: =1
+
+            DataCardValue6 As label:
+                DisplayMode: =Parent.DisplayMode
+                Font: =Font.'Segoe UI'
+                Height: =73
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =ThisItem.'Serial Number'
+                Width: =229
+                X: =326
+                ZIndex: =2
+
+        "'Phone Number_DataCard1' As typedDataCard.textualViewCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Phone_x0020_Number"
+            Default: =ThisItem.'Phone Number'
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@DeviceDataList],DataSourceInfo.DisplayName,'Phone_x0020_Number')
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =73
+            Required: =false
+            Width: =572
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey5 As label:
+                Font: =Font.'Segoe UI'
+                Height: =71
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =227
+                Wrap: =false
+                X: =35
+                Y: =2
+                ZIndex: =1
+
+            DataCardValue5 As label:
+                DisplayMode: =Parent.DisplayMode
+                Font: =Font.'Segoe UI'
+                Height: =73
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =ThisItem.'Phone Number'
+                Width: =229
+                X: =326
+                ZIndex: =2
+
+        "'Date of Purchase_DataCard1' As typedDataCard.textualViewCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Date_x0020_of_x0020_Purchase"
+            Default: =ThisItem.'Date of Purchase'
+            DisplayMode: =DisplayMode.View
+            DisplayName: =DataSourceInfo([@DeviceDataList],DataSourceInfo.DisplayName,'Date_x0020_of_x0020_Purchase')
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =73
+            Required: =false
+            Width: =572
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey7 As label:
+                Font: =Font.'Segoe UI'
+                Height: =71
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =265
+                Wrap: =false
+                X: =35
+                Y: =2
+                ZIndex: =1
+
+            DataCardValue7 As label:
+                DisplayMode: =Parent.DisplayMode
+                Font: =Font.'Segoe UI'
+                Height: =73
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =21
+                Text: =Text(ThisItem.'Date of Purchase', "dd-mmm-yyyy")
+                Width: =229
+                X: =326
+                ZIndex: =2
+
+    Rectangle1_1 As rectangle:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(204, 0, 0, 0.92)
+        Height: =129
+        Width: =640
+        ZIndex: =2
+
+    Label2_1 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        Size: =26
+        Text: ="Search"
+        Width: =213
+        X: =91
+        Y: =29
+        ZIndex: =3
+
+    IconBackarrow1 As icon:
+        AccessibleLabel: =Self.Tooltip
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =0
+        Height: =96
+        Icon: =Icon.ChevronLeft
+        OnSelect: =Navigate(SearchScreen, ScreenTransition.None)
+        PaddingBottom: =24
+        PaddingLeft: =24
+        PaddingRight: =24
+        PaddingTop: =24
+        PressedFill: =RGBA(255, 255, 255, 0.3)
+        TabIndex: =0
+        Tooltip: ="Back to list"
+        Width: =91
+        Y: =16
+        ZIndex: =4
+
+    Image3 As image:
+        Height: =216
+        Image: |+
+            =Switch(
+                selectedRecord.'Device Name',
+                "Galaxy A02", SamsungA02,
+                "Galaxy A03", SamsungA03,
+                "Galaxy A04", SamsungA04,
+                "A03 Core", SamsungA03Core,
+                "A04 Core", SamsungA04Core,
+                "Galaxy A05", SamsungA05A,
+                "Galaxy 06", SamsungA06,
+                "Galaxy A15", SamsungA15,
+                "Galaxy A12", SamsungA12,
+                "Galaxy 23+", SamsungS23Plus, 
+               Blank()
+            )
+            
+        Width: =320
+        X: =160
+        Y: =153
+        ZIndex: =5
+
+    Rectangle3 As rectangle:
+        Fill: =RGBA(204, 0, 0, 0.85)
+        Height: =76
+        Width: =640
+        Y: =1060
+        ZIndex: =6
+
+    FooterImage As image:
+        Height: =76
+        Image: ='RTCZ-removebg-preview_1'
+        Width: =320
+        X: =160
+        Y: =1060
+        ZIndex: =7
+
+    NetworkData As label:
+        Font: =Font.'Segoe UI'
+        Height: =73
+        Size: =21
+        Text: |+
+            =
+            Switch(
+              Left(selectedRecord.'Phone Number', 3),
+              "096", "MTN",
+              "076", "MTN",
+              "097", "Airtel",
+              "077", "Airtel",
+              "057", "Airtel",
+              "095", "Zamtel",
+              "Unknown"
+            )
+            
+        Width: =229
+        X: =365
+        Y: =682
+        ZIndex: =8
+
+    RateData As label:
+        Font: =Font.'Segoe UI'
+        Height: =73
+        Size: =21
+        Text: |
+            =With(
+              {
+                device: selectedRecord.'Device Name',
+                months: Value(selectedRecord.'Months Used'),
+                network: Switch(
+                    Left(selectedRecord.'Phone Number', 3),
+                    "096", "MTN", "076", "MTN",
+                    "097", "Airtel", "077", "Airtel", "057", "Airtel",
+                    "095", "Zamtel",
+                    "Unknown"
+                )
+              },
+             
+              Text(
+                If(
+                  Or(device = "Galaxy A05", device = "Galaxy A15"),
+                  Switch(
+                    network,
+                    "Airtel", 
+                      If(months <= 3, 1, months <= 6, 0.8, months <= 10, 0.6, months <= 13, 0.5, months <= 16, 0.4, months <= 19, 0.2, months <= 23, 0.1, months = 24, 0, 0),
+                    "MTN", 
+                      If(months <= 6, 1, months <= 9, 0.5, months <= 12, 0.4, months <= 15, 0.3, months <= 19, 0.2, months <= 23, 0.1, months = 24, 0, 0),
+                    "Zamtel", 
+                      0,
+                    0
+                  ),
+                  0
+                ) * 100,
+                "0%"
+              )
+            )
+        Width: =229
+        X: =365
+        Y: =755
+        ZIndex: =9
+
+    BuyBackValueData As label:
+        Font: =Font.'Segoe UI'
+        Height: =73
+        Size: =21
+        Text: |
+            =With(
+              {
+                device: selectedRecord.'Device Name',
+                months: Value(selectedRecord.'Months Used'),
+                basePrice: Value(selectedRecord.'Base Price'),
+                phoneNumber: selectedRecord.'Phone Number'
+              },
+              With(
+                {
+                  prefix: Left(phoneNumber, 3),
+                  network: Switch(
+                    Left(phoneNumber, 3),
+                    "096", "MTN", "076", "MTN",
+                    "097", "Airtel", "077", "Airtel", "057", "Airtel",
+                    "095", "Zamtel",
+                    "Unknown"
+                  )
+                },
+                With(
+                  {
+                    rate: If(
+                      Or(device = "Galaxy A05", device = "Galaxy A15"),
+                      Switch(
+                        network,
+                        "Airtel",
+                          If(months <= 3, 1, months <= 6, 0.8, months <= 10, 0.6, months <= 13, 0.5, months <= 16, 0.4, months <= 19, 0.2, months <= 23, 0.1, months = 24, 0, 0),
+                        "MTN",
+                          If(months <= 6, 1, months <= 9, 0.5, months <= 12, 0.4, months <= 15, 0.3, months <= 19, 0.2, months <= 23, 0.1, months = 24, 0, 0),
+                        "Zamtel", 0,
+                        0
+                      ),
+                      0
+                    )
+                  },
+                  With(
+                    {
+                      amount: basePrice * rate
+                    },
+                    If(
+                      amount > 0,
+                      "K " & Text(amount, "#,###"),
+                      "K 0"
+                    )
+                  )
+                )
+              )
+            )
+        Width: =229
+        X: =365
+        Y: =828
+        ZIndex: =10
+
+    Network As label:
+        Color: =RGBA(0, 18, 107, 1)
+        Height: =73
+        Size: =21
+        Text: ="Network"
+        Width: =225
+        X: =79
+        Y: =682
+        ZIndex: =11
+
+    Rate As label:
+        Color: =RGBA(0, 18, 107, 1)
+        Height: =73
+        Size: =21
+        Text: ="Rate"
+        Width: =225
+        X: =79
+        Y: =755
+        ZIndex: =12
+
+    BuyBackValue As label:
+        Color: =RGBA(0, 18, 107, 1)
+        Height: =73
+        Size: =21
+        Text: ="Buy Back Value"
+        Width: =225
+        X: =79
+        Y: =828
+        ZIndex: =13
+

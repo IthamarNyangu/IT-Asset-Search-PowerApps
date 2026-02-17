@@ -1,0 +1,249 @@
+SearchScreen As screen:
+    Fill: =RGBA(245, 245, 245, 1)
+
+    Rectangle1 As rectangle:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(204, 0, 0, 0.92)
+        Height: =129
+        Width: =640
+        ZIndex: =1
+
+    Label2 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.Arial
+        FontWeight: =FontWeight.Semibold
+        Height: =70
+        Size: =26
+        Text: ="RTCZ Device Search"
+        Width: =416
+        X: =222
+        Y: =29
+        ZIndex: =2
+
+    Image1 As image:
+        Height: =101
+        Image: ='RTCZ-removebg-preview'
+        Width: =184
+        X: =13
+        Y: =13
+        ZIndex: =3
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Fill: =RGBA(237, 237, 237, 1)
+        Height: =684
+        Items: |
+            =If(
+               !IsBlank(varSearchTerm),
+               Filter(
+                  DeviceDataList,
+                  StartsWith('Phone Number', varSearchTerm) ||
+                  StartsWith('Serial Number', varSearchTerm)
+               ),
+               Filter(DeviceDataList, false)
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =Navigate(DetailsPage, ScreenTransition.None, {selectedRecord: ThisItem})
+        TemplateFill: =
+        TemplatePadding: =0
+        TemplateSize: =104
+        Visible: =varShowResults
+        Width: =596
+        X: =23
+        Y: =276
+        ZIndex: =8
+
+        Image2 As image:
+            Height: =72
+            Image: |-
+                =Switch(
+                    ThisItem.'Device Name',
+                    "Galaxy A02", SamsungA02,
+                    "Galaxy A03", SamsungA03,
+                    "Galaxy A04", SamsungA04,
+                    "A03 Core", SamsungA03Core,
+                    "A04 Core", SamsungA04Core,
+                    "Galaxy A05", SamsungA05A,
+                    "Galaxy 06", SamsungA06,
+                    "Galaxy A15", SamsungA15,
+                    "Galaxy A12", SamsungA12,
+                    "Galaxy 23+", SamsungS23Plus, 
+                   Blank()
+                )
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =72
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Title1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Phone Number'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 173
+            X: =103
+            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+            ZIndex: =2
+
+        Subtitle1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Device Name'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title1.Width
+            X: =Title1.X
+            Y: =Title1.Y + Title1.Height
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(56, 56, 56, 1)
+            DisabledColor: =RGBA(119, 119, 119, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: |-
+                =Navigate(DetailsPage, ScreenTransition.None, {selectedRecord: ThisItem})
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            Fill: =RGBA(224, 224, 224, 1)
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        Rectangle2 As rectangle:
+            Height: =Parent.TemplateHeight - Separator1.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =6
+
+    Button1 As button:
+        BorderThickness: =1
+        DisplayMode: |-
+            =If(
+                IsBlank(Trim(TextSearchBox1.Text)),
+                DisplayMode.Disabled,
+                DisplayMode.Edit
+            )
+        Fill: =RGBA(204, 0, 0, 0.87)
+        Height: =76
+        HoverFill: =ColorFade(RGBA(204, 0, 0, 1), -20%)
+        OnSelect: |-
+            =Set(varSearchTerm, Trim(TextSearchBox1.Text));
+            Set(varShowResults, true);
+            
+            Patch(
+               SearchLogs_Excel,
+               Defaults(SearchLogs_Excel),
+               {
+                  'Search Term': varSearchTerm,
+                  'Search Time Stamp': Now(),
+                  'User Email': User().Email
+               }
+            );
+        Size: =24
+        Text: ="Search"
+        Width: =156
+        X: =460
+        Y: =170
+        ZIndex: =9
+
+    Label1 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(245, 245, 245, 1)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =95
+        Size: =21
+        Text: |
+            =If(
+                varShowResults && IsEmpty(Gallery1.AllItems),
+                "No matching devices found. Try again.",
+                ""
+            )
+        Width: =593
+        X: =23
+        Y: =978
+        ZIndex: =10
+
+    TextSearchBox1 As text:
+        BorderColor: =RGBA(128, 128, 128, 1)
+        BorderThickness: =0.4
+        Default: =""
+        DelayOutput: =true
+        DisabledBorderColor: =RGBA(102, 102, 102, 1)
+        Font: =Font.'Segoe UI'
+        Height: =82
+        HintText: ="Search by Phone or Serial Number"
+        HoverBorderColor: =RGBA(128, 128, 128, 1)
+        HoverFill: =RGBA(255, 255, 255, 1)
+        OnSelect: |
+            =Set(varSearchTerm, Trim(TextSearchBox1.Text));
+            Set(varShowResults, true);
+            
+            Patch(
+               SearchLogs_Excel,
+               Defaults(SearchLogs_Excel),
+               {
+                  'Search Term': varSearchTerm,
+                  'Search Time Stamp': Now(),
+                  'User Email': User().Email
+               }
+            )
+        PaddingLeft: =70
+        RadiusBottomLeft: =10
+        RadiusBottomRight: =10
+        RadiusTopLeft: =10
+        RadiusTopRight: =10
+        Size: =16
+        Width: =413
+        X: =23
+        Y: =170
+        ZIndex: =11
+
+    SearchIcon1 As icon:
+        Color: =RGBA(191, 190, 190, 1)
+        Height: =82
+        Icon: =Icon.Search
+        PaddingBottom: =14
+        PaddingLeft: =14
+        PaddingRight: =14
+        PaddingTop: =14
+        Tooltip: ="Search"
+        Width: =77
+        X: =23
+        Y: =170
+        ZIndex: =12
+

@@ -1,0 +1,7 @@
+{
+  "DataEntityMetadataJson": {
+    "SearchLogs_Excel": "{\"name\":\"SearchLogs_Excel\",\"title\":\"SearchLogs_Excel\",\"x-ms-permission\":\"read-write\",\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Search_x0020_Term\":{\"type\":\"string\",\"x-ms-keyOrder\":0,\"x-ms-keyType\":\"none\",\"x-ms-sort\":\"none\",\"title\":\"Search Term\"},\"Search_x0020_Time_x0020_Stamp\":{\"type\":\"string\",\"format\":\"date-time\",\"x-ms-keyOrder\":0,\"x-ms-keyType\":\"none\",\"x-ms-sort\":\"none\",\"title\":\"Search Time Stamp\"},\"User_x0020_Email\":{\"type\":\"string\",\"x-ms-keyOrder\":0,\"x-ms-keyType\":\"none\",\"x-ms-sort\":\"none\",\"title\":\"User Email\"},\"__PowerAppsId__\":{\"type\":\"string\",\"x-ms-keyOrder\":1,\"x-ms-keyType\":\"primary\",\"x-ms-sort\":\"none\",\"x-ms-permission\":\"read-only\",\"title\":\"Row id\"}}}}}"
+  },
+  "EntityName": "SearchLogs_Excel",
+  "TableName": "SearchLogs_Excel"
+}

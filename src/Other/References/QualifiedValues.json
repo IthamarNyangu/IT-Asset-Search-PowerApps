@@ -1,0 +1,39 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_cr2b4_devicedatalist_forms",
+      "Namespace": "DeviceDataLists (Forms)",
+      "Values": {
+        "Information": "62238984-14f0-4d43-a0e7-f5522ff08254"
+      }
+    },
+    {
+      "Kind": "default.cds_cr2b4_searchlogs_forms",
+      "Namespace": "SearchLogs (Forms)",
+      "Values": {
+        "Information": "945fd0ef-a29a-47c6-acc9-dde1c661b035"
+      }
+    },
+    {
+      "Kind": "default.cds_cr2b4_rtczdevicelist_forms",
+      "Namespace": "RTCZDeviceLists (Forms)",
+      "Values": {
+        "Information": "c29ae482-95ad-4cc2-8056-eab701d733ff"
+      }
+    },
+    {
+      "Kind": "default.cds_cr2b4_rtczdevicebuyback_forms",
+      "Namespace": "RTCZDeviceBuyBacks (Forms)",
+      "Values": {
+        "Information": "82e60c11-a2fc-4c70-b269-759a98a62d42"
+      }
+    },
+    {
+      "Kind": "default.cds_cr2b4_devicebuyback2025_forms",
+      "Namespace": "DeviceBuyBack2025S (Forms)",
+      "Values": {
+        "Information": "30a67fc7-8a88-4506-9c23-966c955f64b0"
+      }
+    }
+  ]
+}

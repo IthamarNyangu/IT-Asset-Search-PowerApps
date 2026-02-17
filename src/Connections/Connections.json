@@ -1,0 +1,67 @@
+{
+  "dbef25e6-d501-4a4e-80ec-05b36f427a3c": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "OneDrive for Business",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1763/1.0.1763.4307/onedriveforbusiness/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_onedriveforbusiness",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "ed070035-be2a-4ad5-a297-870fa9e50703"
+    ],
+    "id": "dbef25e6-d501-4a4e-80ec-05b36f427a3c"
+  },
+  "ed070035-be2a-4ad5-a297-870fa9e50703": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Excel",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1767/1.0.1767.4332/excel/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_excel",
+      "parameterHints": {
+        "dbef25e6-d501-4a4e-80ec-05b36f427a3c": {
+          "value": "fileSource"
+        }
+      },
+      "parameterHintsV2": {
+        "fileSource": {
+          "value": "dbef25e6-d501-4a4e-80ec-05b36f427a3c"
+        }
+      }
+    },
+    "datasets": {
+      "b!IL9QuYM-aEK7pK2XuLdM97y61QY3JGhDqUCGbVkmxc-2mwo2ZnW8Q4L7Pww99pHQ.01WQIQGLIVCZUFOBPZY5CZEU5CN67Z3QTO": {
+        "dataSources": {
+          "SearchLogs_Excel": {
+            "tableName": "SearchLogs_Excel"
+          }
+        }
+      },
+      "b!IL9QuYM-aEK7pK2XuLdM97y61QY3JGhDqUCGbVkmxc-2mwo2ZnW8Q4L7Pww99pHQ.01WQIQGLJSZCNYRNICEFCYPR7U2LQJ56TK": {
+        "dataSources": {
+          "DeviceDataList": {
+            "tableName": "DeviceDataList"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "SearchLogs_Excel",
+      "DeviceDataList"
+    ],
+    "dependencies": {
+      "fileSource": "dbef25e6-d501-4a4e-80ec-05b36f427a3c"
+    },
+    "dependents": [],
+    "id": "ed070035-be2a-4ad5-a297-870fa9e50703"
+  }
+}
